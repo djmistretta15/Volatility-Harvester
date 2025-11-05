@@ -5,9 +5,13 @@ help:
 	@echo ""
 	@echo "Setup & Installation:"
 	@echo "  make install      Install Python dependencies"
-	@echo "  make up           Start all services (Docker)"
+	@echo "  make up           Start all services (Docker + Frontend)"
 	@echo "  make down         Stop all services"
 	@echo "  make restart      Restart all services"
+	@echo ""
+	@echo "Frontend:"
+	@echo "  make dashboard    Open dashboard in browser"
+	@echo "  make logs-frontend View frontend logs"
 	@echo ""
 	@echo "Database:"
 	@echo "  make migrate      Run database migrations"
@@ -31,10 +35,11 @@ install:
 up:
 	docker-compose up -d
 	@echo "Services started!"
-	@echo "API: http://localhost:8000"
-	@echo "Metrics: http://localhost:9090"
-	@echo "Grafana: http://localhost:3000 (admin/admin)"
-	@echo "Prometheus: http://localhost:9091"
+	@echo "🎨 Dashboard: http://localhost:3000"
+	@echo "🔌 API: http://localhost:8000"
+	@echo "📊 Metrics: http://localhost:9090"
+	@echo "📈 Grafana: http://localhost:3001 (admin/admin)"
+	@echo "🔍 Prometheus: http://localhost:9091"
 
 down:
 	docker-compose down
@@ -113,6 +118,13 @@ clean:
 
 dev:
 	uvicorn app.api.server:app --reload --host 0.0.0.0 --port 8000
+
+dashboard:
+	@echo "Opening dashboard..."
+	@open http://localhost:3000 2>/dev/null || xdg-open http://localhost:3000 2>/dev/null || echo "Dashboard: http://localhost:3000"
+
+logs-frontend:
+	docker-compose logs -f frontend
 
 format:
 	black app/

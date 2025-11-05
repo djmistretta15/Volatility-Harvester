@@ -6,11 +6,27 @@ A production-grade BTC volatility harvesting trading engine with backtesting, pa
 
 The Volatility Harvester implements a systematic trading strategy that profits from Bitcoin's natural price oscillations by buying on dips and selling on rebounds. The system features:
 
+- **Beautiful Dashboard** - Real-time React UI with live charts and metrics
 - **Fee-aware execution** with maker/taker optimization
 - **Full compounding** through all-in/all-out position management
 - **Adaptive thresholds** based on market volatility (ATR)
 - **Comprehensive risk management** with multiple circuit breakers
 - **Multi-mode operation**: Backtest → Paper Trade → Live Trade pipeline
+
+## 🎨 Dashboard
+
+The system includes a **stunning, production-grade web dashboard** built with React + TypeScript:
+
+- **Real-time Metrics** - Equity, P&L, win rate, drawdown updating every 2 seconds
+- **Interactive Charts** - Beautiful equity curve with trend predictions
+- **Live Trade Feed** - See every trade as it executes with P&L
+- **Risk Monitoring** - Circuit breaker status and health indicators
+- **One-Click Controls** - Start/stop paper or live trading from the UI
+- **Responsive Design** - Works perfectly on desktop, tablet, and mobile
+
+Access at **http://localhost:3000** after running `make up`
+
+![Dashboard Preview](docs/dashboard-preview.png) *(Coming soon)*
 
 ## Quick Start
 
@@ -31,11 +47,12 @@ nano .env
 ### 2. Start Services
 
 ```bash
-# Start all services (Postgres, API, Prometheus, Grafana)
+# Start all services (Dashboard, API, Postgres, Prometheus, Grafana)
 make up
 
 # Wait for services to be ready (~30 seconds)
-# API will be available at http://localhost:8000
+# 🎨 Dashboard: http://localhost:3000
+# 🔌 API: http://localhost:8000
 ```
 
 ### 3. Run Backtest
